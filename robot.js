@@ -1,8 +1,7 @@
-const Robot = function(rightWheel, leftWheel) {
+const Robot = function(frontWheel) {
 
     this.left = function(cb) {
-        // leftWheel.forward();
-        rightWheel.reverse();
+        frontWheel.reverse();
         if (cb)
             cb();
         return this;
@@ -18,32 +17,14 @@ const Robot = function(rightWheel, leftWheel) {
     }
 
     this.right = function(cb) {
-        // leftWheel.reverse();
-        rightWheel.forward();
-        if (cb)
-            cb();
-        return this;
-    }
-
-    this.forward = function(cb) {
-        leftWheel.forward();
-        // rightWheel.forward();
-        if (cb)
-            cb();
-        return this;
-    }
-
-    this.reverse = function(cb) {
-        leftWheel.reverse();
-        // rightWheel.reverse();
+        frontWheel.forward();
         if (cb)
             cb();
         return this;
     }
 
     this.stop = function(cb) {
-        leftWheel.stop();
-        // rightWheel.stop();
+        frontWheel.stop();
         if (cb)
             cb();
         return this;

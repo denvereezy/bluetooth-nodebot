@@ -1,22 +1,29 @@
-const five     = require("johnny-five"),
-      keypress = require('keypress'),
-      Wheel    = require("./wheels"),
-      Robot    = require("./robot");
+const five       = require("johnny-five"),
+      keypress   = require('keypress'),
+      FrontWheel = require("./frontWheel"),
+      RearWheel  = require('./rearWheel'),
+      Robot      = require("./robot"),
+      RobotRun   = require('./robotRun');
 
 keypress(process.stdin);
 
-var board = new five.Board({
+const board = new five.Board({
   port: '/dev/tty.CAPEBOT2-DevB'
 });
 
 board.on("ready", function() {
 
-    const wheel1 = new Wheel(9, 8, 200),
-        wheel2 = new Wheel(6, 7, 200);
+    const frontWheel = new FrontWheel(4, 5, 180),
+        rearWheel = new RearWheel(6, 7, 200);
 
-    const robot = new Robot(wheel1, wheel2);
+    const robot = new Robot(frontWheel);
     this.repl.inject({
         robot: robot
+    });
+
+    const robotRun = new RobotRun(rearWheel);
+    this.repl.inject({
+        robotRun: robotRun
     });
 
     process.stdin.resume();
@@ -31,11 +38,11 @@ board.on("ready", function() {
                     break;
                 case 'up':
                     console.log('Forward');
-                    robot.forward();
+                    robotRun.forward();
                     break;
                 case 'down':
                     console.log('Backwards');
-                    robot.reverse();
+                    robotRun.reverse();
                     break;
                 case 'left':
                     console.log('left');
@@ -48,7 +55,8 @@ board.on("ready", function() {
                 case 'space':
                     console.log('stop');
                     robot.stop();
-                    // break;
+                    robotRun.stop();
+                    break;
             };
     });
 });

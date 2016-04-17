@@ -1,0 +1,24 @@
+{
+  "name": "bluetooth-nodebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "commander.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denvereezy/bluetooth-nodebot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/denvereezy/bluetooth-nodebot/issues"
+  },
+  "dependencies": {
+    "johnny-five":"latest",
+    "keypress":"latest",
+    "speak":"latest"
+  },
+  "homepage": "https://github.com/denvereezy/bluetooth-nodebot#readme"
+}

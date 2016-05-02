@@ -8,9 +8,10 @@ const five       = require("johnny-five"),
 
 keypress(process.stdin);
 
-const board = new five.Board({
-  port: '/dev/tty.CAPEBOT2-DevB'
-});
+// const board = new five.Board({
+//   port: '/dev/tty.CAPEBOT2-DevB'
+// });
+const board = new five.Board();
 
 board.on("ready", function() {
 say.speak('You are ready to roll', 'Alex',1);
@@ -26,6 +27,7 @@ say.speak('You are ready to roll', 'Alex',1);
     this.repl.inject({
         robotRun: robotRun
     });
+    robot.reverse().stop();
 
     process.stdin.resume();
     process.stdin.setEncoding('utf8');
